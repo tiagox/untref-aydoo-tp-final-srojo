@@ -4,38 +4,39 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CsvReader {
 
-	private String inputFile;
+	private BufferedReader reader;
 
 	public CsvReader(String inputFile) {
-		this.inputFile = inputFile;
+		openFile(inputFile);
 	}
 
-	public List<String> getRegisters() {
-		List<String> registers = new ArrayList<String>();
-		String line;
+	private void openFile(String inputFile) {
 		try {
-			InputStream fis = new FileInputStream(inputFile);
-			InputStreamReader isr = new InputStreamReader(fis);
-			BufferedReader br = new BufferedReader(isr);
-			
-			while ((line = br.readLine()) != null) {
-				registers.add(line);
-			}
-
-			br.close();
+			reader = new BufferedReader(new InputStreamReader(
+					new FileInputStream(inputFile)));
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
+		}
+	}
+
+	public String readLine() {
+		String line = null;
+		try {
+			line = reader.readLine();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		return registers;
+		return line;
+	}
+
+	@Override
+	protected void finalize() throws Throwable {
+		reader.close();
+		super.finalize();
 	}
 
 }
