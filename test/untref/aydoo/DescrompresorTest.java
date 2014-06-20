@@ -1,6 +1,7 @@
 package untref.aydoo;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -8,12 +9,12 @@ import org.junit.Test;
 
 public class DescrompresorTest {
 
-	private static final String ARCHIVO_ENTRADA = "testResources/test.zip";
-	private static final String CARPETA_SALIDA = "testResources/test";
+	private static final String INPUT_FILE = "testResources/test.zip";
+	private static final String OUTPUT_DIR = "testResources/test";
 
 	@After
 	public void tearDown() throws Exception {
-		File carpetaSalida = new File(CARPETA_SALIDA);
+		File carpetaSalida = new File(OUTPUT_DIR);
 
 		if (carpetaSalida.exists()) {
 			File[] archivos = carpetaSalida.listFiles();
@@ -25,16 +26,15 @@ public class DescrompresorTest {
 	}
 
 	@Test
-	public void descomprimirUnArchivoDeberiaCrearUnaCarpetaConElMismoNombreDelArchivo() {
+	public void extraerUnZipDeberiaCrearUnaCarpetaConTodosLosArchivosComprimidos() {
 		Descompresor descompresor = new Descompresor();
 
-		String pathCarpetaSalida = descompresor.extraer(ARCHIVO_ENTRADA);
+		List<String> fileList = descompresor.extract(INPUT_FILE, OUTPUT_DIR);
 
-		File carpetaSalida = new File(CARPETA_SALIDA);
-		
-		Assert.assertEquals(CARPETA_SALIDA, pathCarpetaSalida);
-		Assert.assertTrue(carpetaSalida.exists());
-		
+		File outputDir = new File(OUTPUT_DIR);
+		Assert.assertTrue(outputDir.exists());
+
+		Assert.assertEquals(4, fileList.size());
 	}
 
 }
