@@ -17,25 +17,28 @@ import java.util.zip.ZipInputStream;
 public class Descompresor {
 
 	public List<String> extract(String zipFile, String outputPath) {
+		ZipInputStream zis;
+		ZipEntry ze;
+		OutputStream os = null;
 		List<String> fileList = new ArrayList<String>();
-		
+
+		outputPath = createDir(outputPath);
+
 		try {
-			FileInputStream fis = new FileInputStream(zipFile);
-			CheckedInputStream cis = new CheckedInputStream(fis, new Adler32());
-			BufferedInputStream bis = new BufferedInputStream(cis);
-			ZipInputStream zis = new ZipInputStream(bis);
-			ZipEntry ze;
-			OutputStream os = null;
-			
-			outputPath = createDir(outputPath);
-			
+			zis = new ZipInputStream(new BufferedInputStream(
+					new CheckedInputStream(new FileInputStream(zipFile),
+							new Adler32())));
+
 			while ((ze = zis.getNextEntry()) != null) {
-				os = new FileOutputStream(outputPath + File.separator + ze.getName());
+				os = new FileOutputStream(outputPath + File.separator
+						+ ze.getName());
 				fileList.add(outputPath + File.separator + ze.getName());
+
 				int chunk;
 				while ((chunk = zis.read()) != -1) {
 					os.write(chunk);
 				}
+
 			}
 
 			os.close();
@@ -45,7 +48,7 @@ public class Descompresor {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		return fileList;
 	}
 
@@ -55,12 +58,8 @@ public class Descompresor {
 		if (!dir.exists()) {
 			dir.mkdir();
 		}
-		
+
 		return dir.getAbsolutePath();
 	}
-
-//	private String getDirName(String zipFile) {
-//		return zipFile.substring(0, zipFile.lastIndexOf('.'));
-//	}
 
 }
