@@ -8,10 +8,15 @@ import java.util.Map.Entry;
 
 public class CalculadorEstadistico {
 
-	Map<String, Integer> contadorPorBicicleta = new HashMap<String, Integer>();
+	private int contadorDeRegistros = 0;
+	private long acumuladorDeTiempos = 0L;
+	private Map<String, Integer> contadorPorBicicleta = new HashMap<String, Integer>();
 
 	public void addPrestamo(Prestamo prestamo) {
 		updateContadorPorBicicleta(prestamo);
+		updateAcumuladorDeTiempos(prestamo);
+		
+		contadorDeRegistros++;
 	}
 
 	private void updateContadorPorBicicleta(Prestamo prestamo) {
@@ -22,6 +27,10 @@ public class CalculadorEstadistico {
 		} else {
 			contadorPorBicicleta.put(prestamo.getBicicletaId(), 1);
 		}
+	}
+
+	private void updateAcumuladorDeTiempos(Prestamo prestamo) {
+		acumuladorDeTiempos += prestamo.getTiempoUso();
 	}
 
 	public List<String> getBicicletasMasUsada() {
@@ -54,6 +63,10 @@ public class CalculadorEstadistico {
 			}
 		}
 		return bicicletas;
+	}
+
+	public int getTiempoPromedioUso() {
+		return (int) acumuladorDeTiempos / contadorDeRegistros;
 	}
 
 }
