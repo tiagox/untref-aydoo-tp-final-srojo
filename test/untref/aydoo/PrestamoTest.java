@@ -24,7 +24,8 @@ public class PrestamoTest {
 	}
 
 	@Test(expected = RegistroInvalidoException.class)
-	public void unPrestamoDeberiaIdentificarUnRegistroInvalidoAlQueLeFaltanCampos() throws RegistroInvalidoException {
+	public void unPrestamoDeberiaIdentificarUnRegistroInvalidoAlQueLeFaltanCampos()
+			throws RegistroInvalidoException {
 		Prestamo prestamo = new Prestamo();
 
 		prestamo.parse("1036;403;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;3;RETIRO;");

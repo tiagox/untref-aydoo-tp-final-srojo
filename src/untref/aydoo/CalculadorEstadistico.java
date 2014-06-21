@@ -9,13 +9,15 @@ import java.util.Map.Entry;
 public class CalculadorEstadistico {
 
 	private int contadorDeRegistros = 0;
-	private long acumuladorDeTiempos = 0L;
 	private Map<String, Integer> contadorPorBicicleta = new HashMap<String, Integer>();
+	private Map<Recorrido, Integer> contadorPorRecorrido = new HashMap<Recorrido, Integer>();
+	private long acumuladorDeTiempos = 0L;
 
 	public void addPrestamo(Prestamo prestamo) {
 		updateContadorPorBicicleta(prestamo);
+		updateContadorPorRecorrido(prestamo);
 		updateAcumuladorDeTiempos(prestamo);
-		
+
 		contadorDeRegistros++;
 	}
 
@@ -26,6 +28,15 @@ public class CalculadorEstadistico {
 					cantidadUsos + 1);
 		} else {
 			contadorPorBicicleta.put(prestamo.getBicicletaId(), 1);
+		}
+	}
+
+	private void updateContadorPorRecorrido(Prestamo prestamo) {
+		Integer cantidadUsos;
+		if ((cantidadUsos = contadorPorRecorrido.get(prestamo.getRecorrido())) != null) {
+			contadorPorRecorrido.put(prestamo.getRecorrido(), cantidadUsos + 1);
+		} else {
+			contadorPorRecorrido.put(prestamo.getRecorrido(), 1);
 		}
 	}
 
@@ -63,6 +74,23 @@ public class CalculadorEstadistico {
 			}
 		}
 		return bicicletas;
+	}
+
+	public List<Recorrido> getRecorridosMasUsados() {
+		Integer maximo = contadorPorBicicleta.entrySet().iterator().next()
+				.getValue();
+		List<Recorrido> recorridos = new ArrayList<Recorrido>();
+		for (Entry<Recorrido, Integer> entry : contadorPorRecorrido.entrySet()) {
+			System.out.println(entry.getValue());
+			if (entry.getValue() == maximo) {
+				recorridos.add(entry.getKey());
+			} else if (entry.getValue() > maximo) {
+				maximo = entry.getValue();
+				recorridos = new ArrayList<Recorrido>();
+				recorridos.add(entry.getKey());
+			}
+		}
+		return recorridos;
 	}
 
 	public int getTiempoPromedioUso() {
