@@ -40,6 +40,12 @@ El resultado del procesamiento será un archivo en formato YAML [3] con la sigui
 * recorrido más veces realizado (par origen-destino)
 * tiempo promedio de uso
 
+### Archivos de entrada para probar
+
+* [Recorridos-2010.zip](https://drive.google.com/file/d/0BwxS5GYrNYTqYTRSODN5SVluQVU/edit?usp=sharing)
+* [Recorridos-2012.zip](https://drive.google.com/file/d/0BwxS5GYrNYTqcXp3UWZQZHkxNEE/edit?usp=sharing)
+* [Recorridos-2013.zip](https://drive.google.com/file/d/0BwxS5GYrNYTqRzJaZWp6T0dQZjA/edit?usp=sharing)
+
 ---
 
 - [1] http://data.buenosaires.gob.ar/dataset/bicicletas-publicas
