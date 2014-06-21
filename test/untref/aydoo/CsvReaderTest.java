@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class CsvReaderTest {
 
-	private final static String INPUT_FILE = "testResources/recorridos.csv";
+	private final static String INPUT_FILE = "resourcesTests/recorridos.csv";
 
 	@Test
 	public void leerUnaLineaDeveriaDevolverSoloUnaLinea() {

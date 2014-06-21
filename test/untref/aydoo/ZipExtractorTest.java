@@ -9,8 +9,8 @@ import org.junit.Test;
 
 public class ZipExtractorTest {
 
-	private static final String INPUT_FILE = "testResources/test.zip";
-	private static final String OUTPUT_DIR = "testResources/test";
+	private static final String INPUT_FILE = "resourcesTests/test.zip";
+	private static final String OUTPUT_DIR = "resourcesTests/test";
 
 	@After
 	public void tearDown() throws Exception {
