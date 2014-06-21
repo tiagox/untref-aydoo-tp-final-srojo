@@ -40,4 +40,20 @@ public class CalculadorEstadistico {
 		return bicicletas;
 	}
 
+	public List<String> getBicicletasMenosUsada() {
+		Integer minimo = contadorPorBicicleta.entrySet().iterator().next()
+				.getValue();
+		List<String> bicicletas = new ArrayList<String>();
+		for (Entry<String, Integer> entry : contadorPorBicicleta.entrySet()) {
+			if (entry.getValue() == minimo) {
+				bicicletas.add(entry.getKey());
+			} else if (entry.getValue() < minimo) {
+				minimo = entry.getValue();
+				bicicletas = new ArrayList<String>();
+				bicicletas.add(entry.getKey());
+			}
+		}
+		return bicicletas;
+	}
+
 }
