@@ -22,6 +22,17 @@ public class RecorridoTest {
 	}
 
 	@Test
+	public void pruebasDeMetodoCompareToAutogenerado() {
+		Recorrido recorrido = new Recorrido("2", "3");
+
+		Assert.assertEquals(0, recorrido.compareTo(new Recorrido("2", "3")));
+		Assert.assertEquals(1, recorrido.compareTo(new Recorrido("1", "3")));
+		Assert.assertEquals(1, recorrido.compareTo(new Recorrido("2", "2")));
+		Assert.assertEquals(-1, recorrido.compareTo(new Recorrido("3", "3")));
+		Assert.assertEquals(-1, recorrido.compareTo(new Recorrido("2", "4")));
+	}
+
+	@Test
 	public void compararDosRecorridosDeberiaDevolverTrueSiTienenIgualOrigenDestino() {
 		Recorrido recorrido = new Recorrido("DERECHO", "RETIRO");
 		Recorrido otroRecorrido = new Recorrido("DERECHO", "RETIRO");
