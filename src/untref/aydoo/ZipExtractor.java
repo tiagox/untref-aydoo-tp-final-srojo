@@ -14,7 +14,7 @@ import java.util.zip.CheckedInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class Descompresor {
+public class ZipExtractor {
 
 	public List<String> extract(String zipFile, String outputPath) {
 		ZipInputStream zis;

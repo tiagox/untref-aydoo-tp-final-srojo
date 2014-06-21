@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class DescrompresorTest {
+public class ZipExtractorTest {
 
 	private static final String INPUT_FILE = "testResources/test.zip";
 	private static final String OUTPUT_DIR = "testResources/test";
@@ -27,7 +27,7 @@ public class DescrompresorTest {
 
 	@Test
 	public void extraerUnZipDeberiaCrearUnaCarpetaConTodosLosArchivosComprimidos() {
-		Descompresor descompresor = new Descompresor();
+		ZipExtractor descompresor = new ZipExtractor();
 
 		List<String> fileList = descompresor.extract(INPUT_FILE, OUTPUT_DIR);
 
