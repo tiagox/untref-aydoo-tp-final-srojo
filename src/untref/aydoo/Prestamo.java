@@ -5,9 +5,14 @@ public class Prestamo {
 	private String bicicletaId;
 	private Recorrido recorrido;
 	private int tiempoUso;
+	private final int FIELD_COUNT = 9;
 
-	public void parse(String rawLine) {
+	public void parse(String rawLine) throws RegistroInvalidoException {
 		String[] fields = rawLine.split(";");
+		
+		if (fields.length != FIELD_COUNT) {
+			throw new RegistroInvalidoException("Registro inválido: " + rawLine);
+		}
 		
 		/*
 		 * 0: usuarioId

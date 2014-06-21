@@ -9,9 +9,11 @@ import org.junit.Test;
 
 public class CalculadorEstadisticoTest {
 
+	private Prestamo prestamo = new Prestamo();
+
 	@Test
-	public void elCalculadorDebeSaberCualSonLasBicicletasMasUsadas() {
-		Prestamo prestamo = new Prestamo();
+	public void elCalculadorDebeSaberCualSonLasBicicletasMasUsadas()
+			throws RegistroInvalidoException {
 		CalculadorEstadistico calculador = new CalculadorEstadistico();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
@@ -38,8 +40,8 @@ public class CalculadorEstadisticoTest {
 	}
 
 	@Test
-	public void elCalculadorDebeSaberCualesSonLasBicicletasMenosUsadas() {
-		Prestamo prestamo = new Prestamo();
+	public void elCalculadorDebeSaberCualesSonLasBicicletasMenosUsadas()
+			throws RegistroInvalidoException {
 		CalculadorEstadistico calculador = new CalculadorEstadistico();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
