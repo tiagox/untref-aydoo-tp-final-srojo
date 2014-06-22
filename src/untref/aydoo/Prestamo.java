@@ -74,4 +74,10 @@ public class Prestamo {
 		return tiempoUso;
 	}
 
+	@Override
+	public String toString() {
+		return "[bicicletaId=" + bicicletaId + ", recorrido="
+				+ recorrido + ", tiempoUso=" + tiempoUso + "]";
+	}
+
 }

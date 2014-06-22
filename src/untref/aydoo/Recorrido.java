@@ -48,4 +48,9 @@ public class Recorrido implements Comparable<Recorrido> {
 		return 0;
 	}
 
+	@Override
+	public String toString() {
+		return "[origen=" + origen + ", destino=" + destino + "]";
+	}
+
 }

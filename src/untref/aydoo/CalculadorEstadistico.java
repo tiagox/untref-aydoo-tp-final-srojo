@@ -44,7 +44,7 @@ public class CalculadorEstadistico {
 		acumuladorDeTiempos += prestamo.getTiempoUso();
 	}
 
-	public List<String> getBicicletasMasUsada() {
+	public List<String> getBicicletasMasUsadas() {
 		Integer maximo = contadorPorBicicleta.entrySet().iterator().next()
 				.getValue();
 		List<String> bicicletas = new ArrayList<String>();
@@ -60,7 +60,7 @@ public class CalculadorEstadistico {
 		return bicicletas;
 	}
 
-	public List<String> getBicicletasMenosUsada() {
+	public List<String> getBicicletasMenosUsadas() {
 		Integer minimo = contadorPorBicicleta.entrySet().iterator().next()
 				.getValue();
 		List<String> bicicletas = new ArrayList<String>();

@@ -33,7 +33,7 @@ public class CalculadorEstadisticoTest {
 		bicicletasEsperadas.add("443");
 		Collections.sort(bicicletasEsperadas);
 
-		List<String> bicicletasMasUsadas = calculador.getBicicletasMasUsada();
+		List<String> bicicletasMasUsadas = calculador.getBicicletasMasUsadas();
 		Collections.sort(bicicletasMasUsadas);
 
 		Assert.assertEquals(bicicletasEsperadas, bicicletasMasUsadas);
@@ -62,7 +62,7 @@ public class CalculadorEstadisticoTest {
 		Collections.sort(bicicletasEsperadas);
 
 		List<String> bicicletasMenosUsadas = calculador
-				.getBicicletasMenosUsada();
+				.getBicicletasMenosUsadas();
 		Collections.sort(bicicletasMenosUsadas);
 
 		Assert.assertEquals(bicicletasEsperadas, bicicletasMenosUsadas);
