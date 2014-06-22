@@ -8,7 +8,7 @@ public class Prestamo {
 	private static final int FIELD_COUNT = 9;
 	/*
 	 * Indices de encabezados de CSV de recorridos.
-	 *
+	 * 
 	 * 0:usuarioId, 1:bicicletaId, 2:origenFecha, 3:origenEstacionId,
 	 * 4:origenNombre, 5: destinoFecha, 6: destinoEstacionId, 7: destinoNombre,
 	 * 8:tiempoUso
@@ -22,7 +22,8 @@ public class Prestamo {
 	private static final int TIEMPO_USO_INDEX_COLUMN = 8;
 	private static final String TIEMPO_USO_HEADER_NAME = "tiempouso";
 
-	public void parse(String rawLine) throws RegistroInvalidoException, RegistroHeaderException {
+	public void parse(String rawLine) throws RegistroInvalidoException,
+			RegistroHeaderException {
 		String[] fields = rawLine.split(";");
 
 		if (isInvalid(fields)) {

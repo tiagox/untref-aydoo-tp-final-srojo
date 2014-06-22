@@ -22,8 +22,8 @@ public class CalculadorEstadistico {
 	}
 
 	private void updateContadorPorBicicleta(Prestamo prestamo) {
-		Integer cantidadUsos;
-		if ((cantidadUsos = contadorPorBicicleta.get(prestamo.getBicicletaId())) != null) {
+		Integer cantidadUsos = contadorPorBicicleta.get(prestamo.getBicicletaId());
+		if (cantidadUsos != null) {
 			contadorPorBicicleta.put(prestamo.getBicicletaId(),
 					cantidadUsos + 1);
 		} else {
@@ -32,8 +32,8 @@ public class CalculadorEstadistico {
 	}
 
 	private void updateContadorPorRecorrido(Prestamo prestamo) {
-		Integer cantidadUsos;
-		if ((cantidadUsos = contadorPorRecorrido.get(prestamo.getRecorrido())) != null) {
+		Integer cantidadUsos = contadorPorRecorrido.get(prestamo.getRecorrido());
+		if (cantidadUsos != null) {
 			contadorPorRecorrido.put(prestamo.getRecorrido(), cantidadUsos + 1);
 		} else {
 			contadorPorRecorrido.put(prestamo.getRecorrido(), 1);
