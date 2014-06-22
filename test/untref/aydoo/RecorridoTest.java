@@ -6,22 +6,6 @@ import org.junit.Test;
 public class RecorridoTest {
 
 	@Test
-	public void debeRecibirOrigenYDestinoEnElConstructor() {
-		Recorrido recorrido = new Recorrido("DERECHO", "RETIRO");
-
-		Assert.assertNotNull(recorrido);
-	}
-
-	@Test
-	public void pruebasDeMetodoEqualsAutogenerado() {
-		Recorrido recorrido = new Recorrido("DERECHO", "RETIRO");
-
-		Assert.assertTrue(recorrido.equals(recorrido));
-		Assert.assertFalse(recorrido.equals(null));
-		Assert.assertFalse(recorrido.equals("recorrido"));
-	}
-
-	@Test
 	public void pruebasDeMetodoCompareToAutogenerado() {
 		Recorrido recorrido = new Recorrido("2", "3");
 
@@ -33,27 +17,15 @@ public class RecorridoTest {
 	}
 
 	@Test
-	public void compararDosRecorridosDeberiaDevolverTrueSiTienenIgualOrigenDestino() {
+	public void pruebasDeMetodoEqualsAutogenerado() {
 		Recorrido recorrido = new Recorrido("DERECHO", "RETIRO");
-		Recorrido otroRecorrido = new Recorrido("DERECHO", "RETIRO");
 
-		Assert.assertTrue(recorrido.equals(otroRecorrido));
-	}
-
-	@Test
-	public void compararDosRecorridosDeberiaDevolverFalseSiTienenDistintoOrigenDestino() {
-		Recorrido recorrido = new Recorrido("DERECHO", "RETIRO");
-		Recorrido otroRecorrido = new Recorrido("ADUANA", "RETIRO");
-
-		Assert.assertFalse(recorrido.equals(otroRecorrido));
-	}
-
-	@Test
-	public void compararDosRecorridosDeberiaDevolverFalseSiTienenInvertidoOrigenDestino() {
-		Recorrido recorrido = new Recorrido("DERECHO", "RETIRO");
-		Recorrido otroRecorrido = new Recorrido("RETIRO", "DERECHO");
-
-		Assert.assertFalse(recorrido.equals(otroRecorrido));
+		Assert.assertTrue(recorrido.equals(new Recorrido("DERECHO", "RETIRO")));
+		Assert.assertFalse(recorrido.equals(new Recorrido("ADUANA", "RETIRO")));
+		Assert.assertFalse(recorrido.equals(new Recorrido("RETIRO", "DERECHO")));
+		Assert.assertTrue(recorrido.equals(recorrido));
+		Assert.assertFalse(recorrido.equals(null));
+		Assert.assertFalse(recorrido.equals("recorrido"));
 	}
 
 }
