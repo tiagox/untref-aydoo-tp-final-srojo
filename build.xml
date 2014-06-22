@@ -123,11 +123,13 @@
     <target name="test" depends="ejecutar.tests, coverage-report, alternate-coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports." />
 
     <target name="compilar.paquete" depends="test">
-        <javac srcdir="src" destdir="${build}/classes" debug="no"></javac>
+        <javac srcdir="src" destdir="${build}/classes" debug="no" source="1.6" target="1.6">
+            <classpath refid="classpath" />
+        </javac>
     </target>
 
     <target name="empaquetar" depends="compilar.paquete">
-        <jar destfile="${build}/dist/titiritero.jar" basedir="${build}/classes" />
+        <jar destfile="${build}/dist/procesador_estadistico.jar" basedir="${build}/classes" />
     </target>
 
     <target name="integracion-continua" depends="coverage-report" description="Ejecuta todas las tareas de integracion y genera los correspondientes reportes" />
