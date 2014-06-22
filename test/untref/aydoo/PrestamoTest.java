@@ -16,6 +16,8 @@ public class PrestamoTest {
 			prestamo.parse("1036;403;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;3;RETIRO;7");
 		} catch (RegistroInvalidoException e) {
 			System.out.println(e.getMessage());
+		} catch (RegistroHeaderException e) {
+			// do nothing
 		}
 
 		Assert.assertEquals(bicicletaId, prestamo.getBicicletaId());
@@ -25,10 +27,27 @@ public class PrestamoTest {
 
 	@Test(expected = RegistroInvalidoException.class)
 	public void unPrestamoDeberiaIdentificarUnRegistroInvalidoAlQueLeFaltanCampos()
-			throws RegistroInvalidoException {
+			throws RegistroInvalidoException, RegistroHeaderException {
 		Prestamo prestamo = new Prestamo();
 
 		prestamo.parse("1036;403;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;3;RETIRO;");
+	}
+
+	@Test(expected = RegistroInvalidoException.class)
+	public void unPrestamoDeberiaIdentificarUnRegistroInvalidoPorErrorDeFormato()
+			throws RegistroInvalidoException, RegistroHeaderException {
+		Prestamo prestamo = new Prestamo();
+
+		prestamo.parse("1036;403;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;3;RETIRO;error");
+	}
+
+	@Test(expected = RegistroHeaderException.class)
+	public void unPrestamoDeberiaIdentificarElRegistroQueRepresentaElHEaderDelArchivo()
+			throws RegistroInvalidoException, RegistroHeaderException {
+		Prestamo prestamo = new Prestamo();
+		String header = "usuarioid;bicicletaid;origenfecha;origenestacionid;origennombre;destinofecha;destinoestacionid;destinonombre;tiempouso";
+
+		prestamo.parse(header);
 	}
 
 }

@@ -13,7 +13,7 @@ public class CalculadorEstadisticoTest {
 
 	@Test
 	public void elCalculadorDebeSaberCualSonLasBicicletasMasUsadas()
-			throws RegistroInvalidoException {
+			throws RegistroInvalidoException, RegistroHeaderException {
 		CalculadorEstadistico calculador = new CalculadorEstadistico();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
@@ -41,7 +41,7 @@ public class CalculadorEstadisticoTest {
 
 	@Test
 	public void elCalculadorDebeSaberCualesSonLasBicicletasMenosUsadas()
-			throws RegistroInvalidoException {
+			throws RegistroInvalidoException, RegistroHeaderException {
 		CalculadorEstadistico calculador = new CalculadorEstadistico();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
@@ -70,7 +70,7 @@ public class CalculadorEstadisticoTest {
 
 	@Test
 	public void debeSaberCalcularElTiempoPromedioDeUso()
-			throws RegistroInvalidoException {
+			throws RegistroInvalidoException, RegistroHeaderException {
 		CalculadorEstadistico calculador = new CalculadorEstadistico();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
@@ -93,7 +93,7 @@ public class CalculadorEstadisticoTest {
 
 	@Test
 	public void elCalculadorDebeSaberCualesSonLosRecorridosMasUsados()
-			throws RegistroInvalidoException {
+			throws RegistroInvalidoException, RegistroHeaderException {
 		CalculadorEstadistico calculador = new CalculadorEstadistico();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);

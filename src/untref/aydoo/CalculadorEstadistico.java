@@ -81,7 +81,6 @@ public class CalculadorEstadistico {
 				.getValue();
 		List<Recorrido> recorridos = new ArrayList<Recorrido>();
 		for (Entry<Recorrido, Integer> entry : contadorPorRecorrido.entrySet()) {
-			System.out.println(entry.getValue());
 			if (entry.getValue() == maximo) {
 				recorridos.add(entry.getKey());
 			} else if (entry.getValue() > maximo) {
