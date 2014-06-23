@@ -17,15 +17,6 @@ public class OnDemandRunnerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		File dir = new File(INPUT_DIR);
-		for (File eachDir : dir.listFiles()) {
-			if (eachDir.exists() && eachDir.isDirectory()) {
-				for (File file : eachDir.listFiles()) {
-					file.delete();
-				}
-				eachDir.delete();
-			}
-		}
 		File yaml = new File(GENERATED_YAML);
 		if (yaml.exists()) {
 			yaml.delete();

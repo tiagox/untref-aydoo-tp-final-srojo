@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class OnDemandRunner {
@@ -27,6 +26,8 @@ public class OnDemandRunner {
 		joinAllThreads(threads);
 
 		calculador.exportYaml(yamlPath);
+		
+		manager.cleanFiles();
 	}
 
 	private void joinAllThreads(List<Thread> threads) {

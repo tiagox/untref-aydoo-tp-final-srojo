@@ -7,12 +7,13 @@ public class FileManager {
 
 	private static final String ZIP_EXTENSION = "ZIP";
 	private static final String CSV_EXTENSION = "CSV";
+	private String tempDir;
 
 	public List<String> prepareFiles(String inputDir) {
 		DirManager monitor = new DirManager();
 		ZipExtractor extractor = new ZipExtractor();
 
-		String tempDir = createTempDir(inputDir);
+		tempDir = createTempDir(inputDir);
 
 		for (String filePath : monitor.getFilesByExtension(inputDir,
 				ZIP_EXTENSION)) {
@@ -31,6 +32,14 @@ public class FileManager {
 		}
 		dir.mkdir();
 		return baseDir + File.separator + name;
+	}
+
+	public void cleanFiles() {
+		File dir = new File(tempDir);
+		for (File file : dir.listFiles()) {
+			file.delete();
+		}
+		dir.delete();
 	}
 
 }
