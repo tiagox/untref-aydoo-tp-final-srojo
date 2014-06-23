@@ -6,8 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.log4j.Logger;
+
 public class CsvReader {
 
+	private Logger logger = Logger.getLogger("log");
 	private BufferedReader reader;
 
 	public CsvReader(String inputFile) {
@@ -19,7 +22,7 @@ public class CsvReader {
 			reader = new BufferedReader(new InputStreamReader(
 					new FileInputStream(inputFile)));
 		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -28,7 +31,7 @@ public class CsvReader {
 		try {
 			line = reader.readLine();
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		return line;
 	}

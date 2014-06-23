@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 public class StatsCalculator {
 
-	Logger logger = Logger.getLogger("log");
+	private Logger logger = Logger.getLogger("log");
 
 	private int contadorDeRegistros = 0;
 	private Map<String, Integer> contadorPorBicicleta = new HashMap<String, Integer>();
@@ -122,18 +122,17 @@ public class StatsCalculator {
 			writer.write(this.toString());
 			writer.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
 	@Override
 	public String toString() {
 		return "--- # estadisticas de uso de bicicletas" + "\n"
-				+ "bicicleta-utilizada-mas-veces: " + getBicicletasMasUsadas()
-				+ "\n" + "bicicleta-utilizada-menos-veces: "
-				+ getBicicletasMenosUsadas() + "\n"
-				+ "recorrido-mas-veces-realizado: " + getRecorridosMasUsados()
-				+ "\n" + "tiempo-promedio-de-uso: " + getTiempoPromedioUso();
+				+ "bicicleta-utilizada-mas-veces: " + getBicicletasMasUsadas() + "\n"
+				+ "bicicleta-utilizada-menos-veces: " + getBicicletasMenosUsadas() + "\n"
+				+ "recorrido-mas-veces-realizado: " + getRecorridosMasUsados() + "\n"
+				+ "tiempo-promedio-de-uso: " + getTiempoPromedioUso();
 	}
 
 }

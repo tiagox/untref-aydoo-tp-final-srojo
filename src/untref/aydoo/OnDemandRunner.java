@@ -9,11 +9,9 @@ import org.apache.log4j.Logger;
 
 public class OnDemandRunner {
 
-	Logger logger = Logger.getLogger("log");
+	private Logger logger = Logger.getLogger("log");
 
 	public OnDemandRunner(String inputDir) {
-		logger.setLevel(Level.ALL);
-
 		FileManager manager = new FileManager();
 		StatsCalculator calculador = new StatsCalculator();
 		List<Thread> threads = new ArrayList<Thread>();
@@ -27,7 +25,7 @@ public class OnDemandRunner {
 		}
 
 		joinAllThreads(threads);
-		
+
 		calculador.exportYaml(yamlPath);
 	}
 

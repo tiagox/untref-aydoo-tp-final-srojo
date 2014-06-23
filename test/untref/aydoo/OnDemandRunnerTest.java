@@ -43,7 +43,7 @@ public class OnDemandRunnerTest {
 				+ "tiempo-promedio-de-uso: 28\n";
 
 		String yamlContent = getYamlContent();
-		
+
 		Assert.assertEquals(yamlContentExpected, yamlContent);
 	}
 

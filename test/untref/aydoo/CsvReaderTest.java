@@ -13,10 +13,10 @@ public class CsvReaderTest {
 		String expectedLine = "1036;403;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;3;RETIRO;7";
 
 		String line = csvReader.readLine();
-		
+
 		Assert.assertEquals(expectedLine, line);
 	}
-	
+
 	@Test
 	public void leerDosVecesUnaLineaDeveriaDevolverLaSegundaLinea() {
 		CsvReader csvReader = new CsvReader(INPUT_FILE);
@@ -24,10 +24,10 @@ public class CsvReaderTest {
 
 		String line = csvReader.readLine();
 		line = csvReader.readLine();
-		
+
 		Assert.assertEquals(expectedLine, line);
 	}
-	
+
 	@Test
 	public void leerMasAllaDeLaUltimaLineaDeberiaDevolverNull() {
 		CsvReader csvReader = new CsvReader(INPUT_FILE);
@@ -36,8 +36,8 @@ public class CsvReaderTest {
 		line = csvReader.readLine();
 		line = csvReader.readLine();
 		line = csvReader.readLine();
-		
+
 		Assert.assertNull(line);
 	}
-	
+
 }

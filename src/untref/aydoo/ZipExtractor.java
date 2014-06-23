@@ -14,7 +14,11 @@ import java.util.zip.CheckedInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.apache.log4j.Logger;
+
 public class ZipExtractor {
+
+	private Logger logger = Logger.getLogger("log");
 
 	public List<String> extract(String zipFile, String outputPath) {
 		ZipInputStream zis;
@@ -45,9 +49,9 @@ public class ZipExtractor {
 			os.close();
 			zis.close();
 		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 		return fileList;

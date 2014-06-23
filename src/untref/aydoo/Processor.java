@@ -4,9 +4,9 @@ import org.apache.log4j.Logger;
 
 public class Processor implements Runnable {
 
-	Logger logger = Logger.getLogger("log");
-	StatsCalculator calculador;
-	String csvFile;
+	private Logger logger = Logger.getLogger("log");
+	private StatsCalculator calculador;
+	private String csvFile;
 
 	public Processor(StatsCalculator calculador, String csvFile) {
 		this.calculador = calculador;
@@ -25,7 +25,7 @@ public class Processor implements Runnable {
 				logger.debug("Registro procesado" + prestamo.toString());
 				calculador.addPrestamo(prestamo);
 			} catch (RegistroInvalidoException e) {
-				logger.error(e.getMessage());
+				logger.warn(e.getMessage());
 			} catch (RegistroHeaderException e) {
 				logger.debug("Se procesa el encabezado del archivo.");
 			}

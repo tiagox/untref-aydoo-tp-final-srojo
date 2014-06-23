@@ -15,7 +15,7 @@ public class PrestamoTest {
 		try {
 			prestamo.parse("1036;403;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;3;RETIRO;7");
 		} catch (RegistroInvalidoException e) {
-			System.out.println(e.getMessage());
+			// do nothing
 		} catch (RegistroHeaderException e) {
 			// do nothing
 		}
