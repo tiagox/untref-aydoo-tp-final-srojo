@@ -21,6 +21,7 @@ public class ZipExtractor {
 		ZipEntry ze;
 		OutputStream os = null;
 		List<String> fileList = new ArrayList<String>();
+		String filePath;
 
 		outputPath = createDir(outputPath);
 
@@ -30,9 +31,9 @@ public class ZipExtractor {
 							new Adler32())));
 
 			while ((ze = zis.getNextEntry()) != null) {
-				os = new FileOutputStream(outputPath + File.separator
-						+ ze.getName());
-				fileList.add(outputPath + File.separator + ze.getName());
+				filePath = getFreeFilePath(outputPath, ze.getName());
+				os = new FileOutputStream(filePath);
+				fileList.add(filePath);
 
 				int chunk;
 				while ((chunk = zis.read()) != -1) {
@@ -60,6 +61,21 @@ public class ZipExtractor {
 		}
 
 		return dir.getAbsolutePath();
+	}
+
+	private String getFreeFilePath(String baseDir, String originalName) {
+		String name = "" + System.currentTimeMillis() / 1000L;
+		String extension = getExtension(originalName);
+		File file = new File(baseDir + File.separator + name + "." + extension);
+		while (file.exists()) {
+			name += "_";
+			file = new File(baseDir + File.separator + name + "." + extension);
+		}
+		return baseDir + File.separator + name + "." + extension;
+	}
+
+	private String getExtension(String name) {
+		return name.substring(name.lastIndexOf(".") + 1, name.length());
 	}
 
 }

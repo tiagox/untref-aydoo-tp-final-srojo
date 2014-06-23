@@ -15,10 +15,8 @@ public class ZipExtractorTest {
 	@After
 	public void tearDown() throws Exception {
 		File carpetaSalida = new File(OUTPUT_DIR);
-
 		if (carpetaSalida.exists()) {
-			File[] archivos = carpetaSalida.listFiles();
-			for (File archivo : archivos) {
+			for (File archivo : carpetaSalida.listFiles()) {
 				archivo.delete();
 			}
 			carpetaSalida.delete();
