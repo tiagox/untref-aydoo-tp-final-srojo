@@ -56,8 +56,8 @@ public class StatsCalculator {
 	}
 
 	public List<String> getBicicletasMasUsadas() {
-		Integer maximo = contadorPorBicicleta.entrySet().iterator().next()
-				.getValue();
+		Integer maximo = (contadorPorBicicleta.size() == 0) ? 0
+				: contadorPorBicicleta.entrySet().iterator().next().getValue();
 		List<String> bicicletas = new ArrayList<String>();
 		for (Entry<String, Integer> entry : contadorPorBicicleta.entrySet()) {
 			if (entry.getValue() == maximo) {
@@ -73,8 +73,8 @@ public class StatsCalculator {
 	}
 
 	public List<String> getBicicletasMenosUsadas() {
-		Integer minimo = contadorPorBicicleta.entrySet().iterator().next()
-				.getValue();
+		Integer minimo = (contadorPorBicicleta.size() == 0) ? 0
+				: contadorPorBicicleta.entrySet().iterator().next().getValue();
 		List<String> bicicletas = new ArrayList<String>();
 		for (Entry<String, Integer> entry : contadorPorBicicleta.entrySet()) {
 			if (entry.getValue() == minimo) {
@@ -90,8 +90,8 @@ public class StatsCalculator {
 	}
 
 	public List<Recorrido> getRecorridosMasUsados() {
-		Integer maximo = contadorPorBicicleta.entrySet().iterator().next()
-				.getValue();
+		Integer maximo = (contadorPorRecorrido.size() == 0) ? 0
+				: contadorPorRecorrido.entrySet().iterator().next().getValue();
 		List<Recorrido> recorridos = new ArrayList<Recorrido>();
 		for (Entry<Recorrido, Integer> entry : contadorPorRecorrido.entrySet()) {
 			if (entry.getValue() == maximo) {
@@ -107,7 +107,7 @@ public class StatsCalculator {
 	}
 
 	public int getTiempoPromedioUso() {
-		return (int) acumuladorDeTiempos / contadorDeRegistros;
+		return (contadorDeRegistros == 0) ? 0 : (int) acumuladorDeTiempos / contadorDeRegistros;
 	}
 
 	public void exportYaml(String yamlPath) {
@@ -129,10 +129,11 @@ public class StatsCalculator {
 	@Override
 	public String toString() {
 		return "--- # estadisticas de uso de bicicletas" + "\n"
-				+ "bicicleta-utilizada-mas-veces: " + getBicicletasMasUsadas() + "\n"
-				+ "bicicleta-utilizada-menos-veces: " + getBicicletasMenosUsadas() + "\n"
-				+ "recorrido-mas-veces-realizado: " + getRecorridosMasUsados() + "\n"
-				+ "tiempo-promedio-de-uso: " + getTiempoPromedioUso();
+				+ "bicicleta-utilizada-mas-veces: " + getBicicletasMasUsadas()
+				+ "\n" + "bicicleta-utilizada-menos-veces: "
+				+ getBicicletasMenosUsadas() + "\n"
+				+ "recorrido-mas-veces-realizado: " + getRecorridosMasUsados()
+				+ "\n" + "tiempo-promedio-de-uso: " + getTiempoPromedioUso();
 	}
 
 }

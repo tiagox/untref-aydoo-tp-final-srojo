@@ -30,23 +30,20 @@ public class FileManagerTest {
 	}
 
 	@Test
-	public void dadoUnDirectorioDeberiaDejarTodosLosArchivosCsvListosParaProcesar() {
+	public void dadaUnaListaDeZipsDeberiaDejarTodosLosArchivosCsvListosParaProcesar() {
 		FileManager fileManager = new FileManager();
 
-		int cantidadArchivosEsperados = 5;
+		List<String> zipList = new ArrayList<String>();
+		zipList.add(INPUT_DIR + File.separator + "recorridosA.zip");
+		zipList.add(INPUT_DIR + File.separator + "recorridosB.zip");
+		zipList.add(INPUT_DIR + File.separator + "recorridosC.zip");
 
-		List<String> csvList = fileManager.prepareFiles(INPUT_DIR);
+		String dirToProcess = fileManager.prepareFiles(INPUT_DIR, zipList);
 
-		Assert.assertEquals(cantidadArchivosEsperados, csvList.size());
-
-		File file;
-		for (String csvPath : csvList) {
-			file = new File(csvPath);
-			Assert.assertTrue(file.exists());
-			Assert.assertTrue(file.getName().toLowerCase().endsWith(".csv"));
-		}
+		File outputDir = new File(dirToProcess);
+		Assert.assertTrue(outputDir.exists());
+		Assert.assertTrue(outputDir.isDirectory());
 	}
-
 
 	@Test
 	public void dadoUnDirectorioYUnaExtensionDeberiaDevolverLaListaDeArchivosValidos() {
@@ -70,8 +67,8 @@ public class FileManagerTest {
 	public void dadoUnDirectorioYUnaExtensionDeberiaDevolverUnaListaVaciaSiNoHayArchivosDeDichaExtension() {
 		FileManager fileManager = new FileManager();
 
-		List<String> files = fileManager
-				.getFilesByExtension(TEST_DIR_EXISTS, "pdf");
+		List<String> files = fileManager.getFilesByExtension(TEST_DIR_EXISTS,
+				"pdf");
 
 		List<String> filesExpected = new ArrayList<String>();
 
@@ -82,8 +79,8 @@ public class FileManagerTest {
 	public void dadoUnDirectorioInexistenteDeberiaDevolverNull() {
 		FileManager fileManager = new FileManager();
 
-		List<String> files = fileManager.getFilesByExtension(TEST_DIR_NOT_EXISTS,
-				CSV_EXT);
+		List<String> files = fileManager.getFilesByExtension(
+				TEST_DIR_NOT_EXISTS, CSV_EXT);
 
 		Assert.assertNull(files);
 	}

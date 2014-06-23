@@ -25,13 +25,15 @@ public class OnDemandRunnerTest {
 
 	@Test
 	public void testIntegracionOnDemandRunner() {
-		new OnDemandRunner(INPUT_DIR);
+		Runner runner = new OnDemandRunner(INPUT_DIR);
 
 		String yamlContentExpected = "--- # estadisticas de uso de bicicletas\n"
 				+ "bicicleta-utilizada-mas-veces: [430, 443]\n"
 				+ "bicicleta-utilizada-menos-veces: [361, 369, 37, 370, 42, 428, 444, 446, 48, 482, 483]\n"
 				+ "recorrido-mas-veces-realizado: [[7, 3]]\n"
 				+ "tiempo-promedio-de-uso: 28\n";
+
+		runner.doIt();
 
 		String yamlContent = getYamlContent();
 

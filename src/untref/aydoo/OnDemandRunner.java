@@ -4,19 +4,27 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
-public class OnDemandRunner {
-
-	private Logger logger = Logger.getLogger("log");
+public class OnDemandRunner extends Runner {
 
 	public OnDemandRunner(String inputDir) {
+		super(inputDir);
+		
+		logger.info("Ejecutandose en modo 'on demand'.");
+	}
+
+	public void doIt() {
 		FileManager manager = new FileManager();
 		StatsCalculator calculador = new StatsCalculator();
 		List<Thread> threads = new ArrayList<Thread>();
 		String yamlPath = inputDir + File.separator + "output.yml";
 
-		for (String csvFile : manager.prepareFiles(inputDir)) {
+		List<String> zipList = manager.getFilesByExtension(inputDir, "zip");
+		
+		logger.info("Se encontraron " + zipList.size() + " archivos en formato 'zip'.");
+		
+		String dirToProcess = manager.prepareFiles(inputDir, zipList);
+
+		for (String csvFile : manager.getFilesByExtension(dirToProcess, "csv")) {
 			Processor processor = new Processor(calculador, csvFile);
 			Thread thread = new Thread(processor);
 			threads.add(thread);
@@ -24,10 +32,12 @@ public class OnDemandRunner {
 		}
 
 		joinAllThreads(threads);
-
+		
 		calculador.exportYaml(yamlPath);
 		
-		manager.cleanFiles();
+		logger.info("Se ha generado el archivo '" + yamlPath + "'");
+
+		manager.clean(dirToProcess);
 	}
 
 	private void joinAllThreads(List<Thread> threads) {

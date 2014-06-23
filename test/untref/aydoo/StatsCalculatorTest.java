@@ -120,4 +120,19 @@ public class StatsCalculatorTest {
 		Assert.assertEquals(recorridosEsperados, recorridosMasUsados);
 	}
 
+	@Test
+	public void elCalculadorDeberiaFuncionarAunqueNoHayaDatos()
+			throws RegistroInvalidoException, RegistroHeaderException {
+		StatsCalculator calculador = new StatsCalculator();
+		
+		List<String> listaBicicletasVacia = new ArrayList<String>();
+		List<Recorrido> listaRecorridosVacia = new ArrayList<Recorrido>();
+		int tiempoPromedioEsperado = 0;
+		
+		Assert.assertEquals(listaBicicletasVacia, calculador.getBicicletasMasUsadas());
+		Assert.assertEquals(listaBicicletasVacia, calculador.getBicicletasMenosUsadas());
+		Assert.assertEquals(listaRecorridosVacia, calculador.getRecorridosMasUsados());
+		Assert.assertEquals(tiempoPromedioEsperado, calculador.getTiempoPromedioUso());
+	}
+
 }

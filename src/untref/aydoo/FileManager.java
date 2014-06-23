@@ -6,21 +6,18 @@ import java.util.List;
 
 public class FileManager {
 
-	private static final String ZIP_EXTENSION = "ZIP";
-	private static final String CSV_EXTENSION = "CSV";
 	private String tempDir;
 
-	public List<String> prepareFiles(String inputDir) {
+	public String prepareFiles(String baseDir, List<String> zipList) {
 		ZipExtractor extractor = new ZipExtractor();
 
-		tempDir = createTempDir(inputDir);
+		tempDir = createTempDir(baseDir);
 
-		for (String filePath : getFilesByExtension(inputDir,
-				ZIP_EXTENSION)) {
+		for (String filePath : zipList) {
 			extractor.extract(filePath, tempDir);
 		}
 
-		return getFilesByExtension(tempDir, CSV_EXTENSION);
+		return tempDir;
 	}
 
 	private String createTempDir(String baseDir) {
@@ -57,12 +54,28 @@ public class FileManager {
 		return name.toLowerCase().endsWith("." + ext.toLowerCase());
 	}
 
-	public void cleanFiles() {
-		File dir = new File(tempDir);
+	public void clean(String dirPath) {
+		File dir = new File(dirPath);
 		for (File file : dir.listFiles()) {
 			file.delete();
 		}
 		dir.delete();
+	}
+
+	public File moveFileTo(File sourceFile, File destFolder) {
+		File newFile = new File(destFolder.getAbsolutePath() + File.separator + sourceFile.getName());
+		sourceFile.renameTo(newFile);
+		return newFile;
+	}
+
+	public File createSubDir(String dirName, String subDirName) {
+		File subDir = new File(dirName + File.separator + subDirName);
+
+		if (!subDir.exists()) {
+			subDir.mkdir();
+		}
+
+		return subDir;
 	}
 
 }
