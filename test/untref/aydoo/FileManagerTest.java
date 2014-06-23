@@ -1,6 +1,8 @@
 package untref.aydoo;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.After;
@@ -10,6 +12,9 @@ import org.junit.Test;
 public class FileManagerTest {
 
 	private static final String INPUT_DIR = "resourcesTests/dirWithZips";
+	private static final String TEST_DIR_EXISTS = "resourcesTests/testExists";
+	private static final String CSV_EXT = "CSV";
+	private static final String TEST_DIR_NOT_EXISTS = "resourcesTests/testNotExists";
 
 	@After
 	public void tearDown() throws Exception {
@@ -40,6 +45,47 @@ public class FileManagerTest {
 			Assert.assertTrue(file.exists());
 			Assert.assertTrue(file.getName().toLowerCase().endsWith(".csv"));
 		}
+	}
+
+
+	@Test
+	public void dadoUnDirectorioYUnaExtensionDeberiaDevolverLaListaDeArchivosValidos() {
+		FileManager fileManager = new FileManager();
+
+		List<String> files = fileManager.getFilesByExtension(TEST_DIR_EXISTS,
+				CSV_EXT);
+		Collections.sort(files);
+
+		List<String> filesExpected = new ArrayList<String>();
+		filesExpected.add("resourcesTests/testExists/recorridos1.csv");
+		filesExpected.add("resourcesTests/testExists/recorridos2.csv");
+		filesExpected.add("resourcesTests/testExists/recorridos3.csv");
+		filesExpected.add("resourcesTests/testExists/recorridos4.csv");
+		Collections.sort(filesExpected);
+
+		Assert.assertEquals(filesExpected, files);
+	}
+
+	@Test
+	public void dadoUnDirectorioYUnaExtensionDeberiaDevolverUnaListaVaciaSiNoHayArchivosDeDichaExtension() {
+		FileManager fileManager = new FileManager();
+
+		List<String> files = fileManager
+				.getFilesByExtension(TEST_DIR_EXISTS, "pdf");
+
+		List<String> filesExpected = new ArrayList<String>();
+
+		Assert.assertEquals(filesExpected, files);
+	}
+
+	@Test
+	public void dadoUnDirectorioInexistenteDeberiaDevolverNull() {
+		FileManager fileManager = new FileManager();
+
+		List<String> files = fileManager.getFilesByExtension(TEST_DIR_NOT_EXISTS,
+				CSV_EXT);
+
+		Assert.assertNull(files);
 	}
 
 }
