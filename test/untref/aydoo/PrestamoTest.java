@@ -41,6 +41,30 @@ public class PrestamoTest {
 		prestamo.parse("1036;403;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;3;RETIRO;error");
 	}
 
+	@Test(expected = RegistroInvalidoException.class)
+	public void unPrestamoDeberiaIdentificarUnRegistroInvalidoPorFaltaDeBicicletaId()
+			throws RegistroInvalidoException, RegistroHeaderException {
+		Prestamo prestamo = new Prestamo();
+
+		prestamo.parse("1036;;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;3;RETIRO;7");
+	}
+
+	@Test(expected = RegistroInvalidoException.class)
+	public void unPrestamoDeberiaIdentificarUnRegistroInvalidoPorFaltaDeOrigenId()
+			throws RegistroInvalidoException, RegistroHeaderException {
+		Prestamo prestamo = new Prestamo();
+
+		prestamo.parse("1036;403;2010-12-30 19:39:03;;DERECHO;2010-12-30 19:46:03;3;RETIRO;7");
+	}
+
+	@Test(expected = RegistroInvalidoException.class)
+	public void unPrestamoDeberiaIdentificarUnRegistroInvalidoPorFaltaDeDestinoId()
+			throws RegistroInvalidoException, RegistroHeaderException {
+		Prestamo prestamo = new Prestamo();
+
+		prestamo.parse("1036;403;2010-12-30 19:39:03;6;DERECHO;2010-12-30 19:46:03;;RETIRO;7");
+	}
+
 	@Test(expected = RegistroHeaderException.class)
 	public void unPrestamoDeberiaIdentificarElRegistroQueRepresentaElHEaderDelArchivo()
 			throws RegistroInvalidoException, RegistroHeaderException {

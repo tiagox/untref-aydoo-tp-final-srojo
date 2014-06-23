@@ -12,9 +12,9 @@ public class ProcessorTest {
 	private static final String CSV_TO_PROCESS = "resourcesTests/dirToProcess/recorridos1.csv";
 
 	@Test
-	public void test() {
-		Processor processor = new Processor();
-		CalculadorEstadistico calculador = new CalculadorEstadistico();
+	public void testIntegracionProcessor() {
+		StatsCalculator calculador = new StatsCalculator();
+		Processor processor = new Processor(calculador, CSV_TO_PROCESS);
 
 		List<String> bicicletasMasUsadasEsperadas = new ArrayList<String>();
 		bicicletasMasUsadasEsperadas.add("403");
@@ -26,7 +26,7 @@ public class ProcessorTest {
 		recorridosMasUsadosEsperados.add(new Recorrido("7", "3"));
 		int tiempoPromedioEsperado = 10;
 
-		processor.processCsv(CSV_TO_PROCESS, calculador);
+		processor.run();
 
 		Assert.assertEquals(bicicletasMasUsadasEsperadas,
 				calculador.getBicicletasMasUsadas());

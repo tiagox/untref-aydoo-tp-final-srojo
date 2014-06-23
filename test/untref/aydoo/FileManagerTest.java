@@ -25,7 +25,7 @@ public class FileManagerTest {
 	}
 
 	@Test
-	public void test() {
+	public void dadoUnDirectorioDeberiaDejarTodosLosArchivosCsvListosParaProcesar() {
 		FileManager fileManager = new FileManager();
 
 		int cantidadArchivosEsperados = 5;

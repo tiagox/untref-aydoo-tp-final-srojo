@@ -50,7 +50,7 @@ public class Recorrido implements Comparable<Recorrido> {
 
 	@Override
 	public String toString() {
-		return "[origen=" + origen + ", destino=" + destino + "]";
+		return "[" + origen + ", " + destino + "]";
 	}
 
 }

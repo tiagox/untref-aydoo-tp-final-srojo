@@ -42,17 +42,17 @@ public class Prestamo {
 	}
 
 	private boolean isInvalid(String[] fields) {
-		return fields.length != FIELD_COUNT;
+		return (fields.length != FIELD_COUNT
+				|| fields[BICICLETA_ID_INDEX_COLUMN].isEmpty()
+				|| fields[RECORRIDO_ORIGEN_INDEX_COLUMN].isEmpty()
+				|| fields[RECORRIDO_DESTINO_INDEX_COLUMN].isEmpty());
 	}
 
 	private boolean isHeader(String[] fields) {
-		return (fields[BICICLETA_ID_INDEX_COLUMN].toLowerCase().equals(
-				BICICLETA_ID_HEADER_NAME)
-				&& fields[RECORRIDO_ORIGEN_INDEX_COLUMN].toLowerCase().equals(
-						RECORRIDO_ORIGEN_HEADER_NAME)
-				&& fields[RECORRIDO_DESTINO_INDEX_COLUMN].toLowerCase().equals(
-						RECORRIDO_DESTINO_HEADER_NAME) && fields[TIEMPO_USO_INDEX_COLUMN]
-				.toLowerCase().equals(TIEMPO_USO_HEADER_NAME));
+		return (fields[BICICLETA_ID_INDEX_COLUMN].toLowerCase().equals(BICICLETA_ID_HEADER_NAME)
+				&& fields[RECORRIDO_ORIGEN_INDEX_COLUMN].toLowerCase().equals(RECORRIDO_ORIGEN_HEADER_NAME)
+				&& fields[RECORRIDO_DESTINO_INDEX_COLUMN].toLowerCase().equals(RECORRIDO_DESTINO_HEADER_NAME)
+				&& fields[TIEMPO_USO_INDEX_COLUMN].toLowerCase().equals(TIEMPO_USO_HEADER_NAME));
 	}
 
 	private void saveFields(String[] fields) {
@@ -76,8 +76,8 @@ public class Prestamo {
 
 	@Override
 	public String toString() {
-		return "[bicicletaId=" + bicicletaId + ", recorrido="
-				+ recorrido + ", tiempoUso=" + tiempoUso + "]";
+		return "[bicicletaId=" + bicicletaId + ", recorrido=" + recorrido
+				+ ", tiempoUso=" + tiempoUso + "]";
 	}
 
 }

@@ -1,19 +1,28 @@
 package untref.aydoo;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class CalculadorEstadistico {
+import org.apache.log4j.Logger;
+
+public class StatsCalculator {
+
+	Logger logger = Logger.getLogger("log");
 
 	private int contadorDeRegistros = 0;
 	private Map<String, Integer> contadorPorBicicleta = new HashMap<String, Integer>();
 	private Map<Recorrido, Integer> contadorPorRecorrido = new HashMap<Recorrido, Integer>();
 	private long acumuladorDeTiempos = 0L;
 
-	public void addPrestamo(Prestamo prestamo) {
+	public synchronized void addPrestamo(Prestamo prestamo) {
 		updateContadorPorBicicleta(prestamo);
 		updateContadorPorRecorrido(prestamo);
 		updateAcumuladorDeTiempos(prestamo);
@@ -22,7 +31,8 @@ public class CalculadorEstadistico {
 	}
 
 	private void updateContadorPorBicicleta(Prestamo prestamo) {
-		Integer cantidadUsos = contadorPorBicicleta.get(prestamo.getBicicletaId());
+		Integer cantidadUsos = contadorPorBicicleta.get(prestamo
+				.getBicicletaId());
 		if (cantidadUsos != null) {
 			contadorPorBicicleta.put(prestamo.getBicicletaId(),
 					cantidadUsos + 1);
@@ -32,7 +42,8 @@ public class CalculadorEstadistico {
 	}
 
 	private void updateContadorPorRecorrido(Prestamo prestamo) {
-		Integer cantidadUsos = contadorPorRecorrido.get(prestamo.getRecorrido());
+		Integer cantidadUsos = contadorPorRecorrido
+				.get(prestamo.getRecorrido());
 		if (cantidadUsos != null) {
 			contadorPorRecorrido.put(prestamo.getRecorrido(), cantidadUsos + 1);
 		} else {
@@ -57,6 +68,7 @@ public class CalculadorEstadistico {
 				bicicletas.add(entry.getKey());
 			}
 		}
+		Collections.sort(bicicletas);
 		return bicicletas;
 	}
 
@@ -73,6 +85,7 @@ public class CalculadorEstadistico {
 				bicicletas.add(entry.getKey());
 			}
 		}
+		Collections.sort(bicicletas);
 		return bicicletas;
 	}
 
@@ -89,11 +102,38 @@ public class CalculadorEstadistico {
 				recorridos.add(entry.getKey());
 			}
 		}
+		Collections.sort(recorridos);
 		return recorridos;
 	}
 
 	public int getTiempoPromedioUso() {
 		return (int) acumuladorDeTiempos / contadorDeRegistros;
+	}
+
+	public void exportYaml(String yamlPath) {
+		File file = new File(yamlPath);
+		if (file.exists()) {
+			file.delete();
+		}
+		try {
+			file.createNewFile();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(
+					file.getAbsolutePath()));
+			writer.write(this.toString());
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "--- # estadisticas de uso de bicicletas" + "\n"
+				+ "bicicleta-utilizada-mas-veces: " + getBicicletasMasUsadas()
+				+ "\n" + "bicicleta-utilizada-menos-veces: "
+				+ getBicicletasMenosUsadas() + "\n"
+				+ "recorrido-mas-veces-realizado: " + getRecorridosMasUsados()
+				+ "\n" + "tiempo-promedio-de-uso: " + getTiempoPromedioUso();
 	}
 
 }

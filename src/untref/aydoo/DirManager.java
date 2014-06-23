@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DirMonitor {
+public class DirManager {
 
 	public List<String> getFilesByExtension(String dir, String ext) {
 		File folder = new File(dir);

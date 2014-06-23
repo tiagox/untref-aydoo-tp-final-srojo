@@ -9,7 +9,7 @@ public class FileManager {
 	private static final String CSV_EXTENSION = "CSV";
 
 	public List<String> prepareFiles(String inputDir) {
-		DirMonitor monitor = new DirMonitor();
+		DirManager monitor = new DirManager();
 		ZipExtractor extractor = new ZipExtractor();
 
 		String tempDir = createTempDir(inputDir);

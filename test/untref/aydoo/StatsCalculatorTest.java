@@ -7,14 +7,14 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CalculadorEstadisticoTest {
+public class StatsCalculatorTest {
 
 	private Prestamo prestamo = new Prestamo();
 
 	@Test
 	public void elCalculadorDebeSaberCualSonLasBicicletasMasUsadas()
 			throws RegistroInvalidoException, RegistroHeaderException {
-		CalculadorEstadistico calculador = new CalculadorEstadistico();
+		StatsCalculator calculador = new StatsCalculator();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
 		prestamo.parse("2722;445;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;14");
@@ -42,7 +42,7 @@ public class CalculadorEstadisticoTest {
 	@Test
 	public void elCalculadorDebeSaberCualesSonLasBicicletasMenosUsadas()
 			throws RegistroInvalidoException, RegistroHeaderException {
-		CalculadorEstadistico calculador = new CalculadorEstadistico();
+		StatsCalculator calculador = new StatsCalculator();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
 		prestamo.parse("2722;445;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;14");
@@ -71,7 +71,7 @@ public class CalculadorEstadisticoTest {
 	@Test
 	public void debeSaberCalcularElTiempoPromedioDeUso()
 			throws RegistroInvalidoException, RegistroHeaderException {
-		CalculadorEstadistico calculador = new CalculadorEstadistico();
+		StatsCalculator calculador = new StatsCalculator();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
 		prestamo.parse("2722;445;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;14");
@@ -94,7 +94,7 @@ public class CalculadorEstadisticoTest {
 	@Test
 	public void elCalculadorDebeSaberCualesSonLosRecorridosMasUsados()
 			throws RegistroInvalidoException, RegistroHeaderException {
-		CalculadorEstadistico calculador = new CalculadorEstadistico();
+		StatsCalculator calculador = new StatsCalculator();
 		prestamo.parse("2722;443;2010-12-30 19:34:16;5;ADUANA;2010-12-30 19:47:03;3;RETIRO;13");
 		calculador.addPrestamo(prestamo);
 		prestamo.parse("2722;445;2010-12-30 19:34:16;3;RETIRO;2010-12-30 19:47:03;5;ADUANA;14");

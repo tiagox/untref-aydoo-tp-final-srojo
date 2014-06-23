@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class DirMonitorTest {
+public class DirManagerTest {
 
 	private static final String TEST_DIR_EXISTS = "resourcesTests/testExists";
 	private static final String CSV_EXT = "CSV";
@@ -15,7 +15,7 @@ public class DirMonitorTest {
 
 	@Test
 	public void dadoUnDirectorioYUnaExtensionDeberiaDevolverLaListaDeArchivosValidos() {
-		DirMonitor monitor = new DirMonitor();
+		DirManager monitor = new DirManager();
 
 		List<String> files = monitor.getFilesByExtension(TEST_DIR_EXISTS,
 				CSV_EXT);
@@ -33,7 +33,7 @@ public class DirMonitorTest {
 
 	@Test
 	public void dadoUnDirectorioYUnaExtensionDeberiaDevolverUnaListaVaciaSiNoHayArchivosDeDichaExtension() {
-		DirMonitor monitor = new DirMonitor();
+		DirManager monitor = new DirManager();
 
 		List<String> files = monitor
 				.getFilesByExtension(TEST_DIR_EXISTS, "pdf");
@@ -45,7 +45,7 @@ public class DirMonitorTest {
 
 	@Test
 	public void dadoUnDirectorioInexistenteDeberiaDevolverNull() {
-		DirMonitor monitor = new DirMonitor();
+		DirManager monitor = new DirManager();
 
 		List<String> files = monitor.getFilesByExtension(TEST_DIR_NOT_EXISTS,
 				CSV_EXT);

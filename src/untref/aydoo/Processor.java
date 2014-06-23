@@ -1,15 +1,20 @@
 package untref.aydoo;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-public class Processor {
+public class Processor implements Runnable {
 
 	Logger logger = Logger.getLogger("log");
+	StatsCalculator calculador;
+	String csvFile;
 
-	public void processCsv(String csvFile, CalculadorEstadistico calculador) {
-		logger.setLevel(Level.OFF);
+	public Processor(StatsCalculator calculador, String csvFile) {
+		this.calculador = calculador;
+		this.csvFile = csvFile;
+	}
 
+	@Override
+	public void run() {
 		CsvReader reader = new CsvReader(csvFile);
 		Prestamo prestamo = new Prestamo();
 		String line;
