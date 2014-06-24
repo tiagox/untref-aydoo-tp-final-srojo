@@ -123,13 +123,13 @@
     <target name="test" depends="ejecutar.tests, coverage-report, alternate-coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports." />
 
     <target name="compilar.paquete" depends="test">
-        <javac srcdir="src" destdir="${build}/classes" debug="no" source="1.6" target="1.6">
+        <javac srcdir="src" destdir="${build}/classes" debug="no" source="1.6" target="1.6" includeantruntime="false">
             <classpath refid="classpath" />
         </javac>
     </target>
 
     <target name="empaquetar" depends="compilar.paquete">
-        <jar destfile="${build}/dist/procesador_estadistico.jar" basedir="${build}/classes">
+        <jar destfile="${build}/dist/procesador_estadistico.jar" basedir="${build}/classes" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="untref.aydoo.Main"/>
                 <attribute name="Class-Path" value="."/>
