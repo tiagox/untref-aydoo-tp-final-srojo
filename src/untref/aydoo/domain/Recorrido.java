@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.domain;
 
 public class Recorrido implements Comparable<Recorrido> {
 

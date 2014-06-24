@@ -1,7 +1,12 @@
-package untref.aydoo;
+package untref.aydoo.runtime;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import untref.aydoo.runtime.DaemonRunner;
+import untref.aydoo.runtime.OnDemandRunner;
+import untref.aydoo.runtime.Runner;
+import untref.aydoo.runtime.RuntimeMode;
 
 public class RunnerTest {
 

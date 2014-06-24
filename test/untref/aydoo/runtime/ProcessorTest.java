@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.runtime;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import untref.aydoo.domain.Recorrido;
+import untref.aydoo.domain.StatsCalculator;
+import untref.aydoo.runtime.Processor;
 
 public class ProcessorTest {
 

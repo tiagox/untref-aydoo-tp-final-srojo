@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.files;
 
 import java.io.File;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+
+import untref.aydoo.files.ZipExtractor;
 
 public class ZipExtractorTest {
 

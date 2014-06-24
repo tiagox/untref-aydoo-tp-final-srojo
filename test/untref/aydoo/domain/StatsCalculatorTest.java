@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +6,12 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import untref.aydoo.domain.Prestamo;
+import untref.aydoo.domain.Recorrido;
+import untref.aydoo.domain.StatsCalculator;
+import untref.aydoo.exceptions.RegistroHeaderException;
+import untref.aydoo.exceptions.RegistroInvalidoException;
 
 public class StatsCalculatorTest {
 

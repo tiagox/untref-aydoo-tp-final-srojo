@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.runtime;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +9,9 @@ import java.io.InputStreamReader;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+
+import untref.aydoo.runtime.OnDemandRunner;
+import untref.aydoo.runtime.Runner;
 
 public class OnDemandRunnerTest {
 

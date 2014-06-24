@@ -1,8 +1,11 @@
-package untref.aydoo;
+package untref.aydoo.runtime;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import untref.aydoo.domain.StatsCalculator;
+import untref.aydoo.files.FileManager;
 
 public class OnDemandRunner extends Runner {
 

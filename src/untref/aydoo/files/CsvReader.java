@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.files;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

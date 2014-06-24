@@ -1,7 +1,9 @@
-package untref.aydoo;
+package untref.aydoo.files;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import untref.aydoo.files.CsvReader;
 
 public class CsvReaderTest {
 

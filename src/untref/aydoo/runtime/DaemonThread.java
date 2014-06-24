@@ -1,10 +1,13 @@
-package untref.aydoo;
+package untref.aydoo.runtime;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import untref.aydoo.domain.StatsCalculator;
+import untref.aydoo.files.FileManager;
 
 public class DaemonThread implements Runnable {
 

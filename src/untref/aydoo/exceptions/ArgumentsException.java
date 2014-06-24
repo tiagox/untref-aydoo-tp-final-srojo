@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.exceptions;
 
 public class ArgumentsException extends Exception {
 

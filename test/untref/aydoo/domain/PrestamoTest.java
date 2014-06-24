@@ -1,7 +1,10 @@
-package untref.aydoo;
+package untref.aydoo.domain;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import untref.aydoo.exceptions.RegistroHeaderException;
+import untref.aydoo.exceptions.RegistroInvalidoException;
 
 public class PrestamoTest {
 

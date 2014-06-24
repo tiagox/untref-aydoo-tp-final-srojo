@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.domain;
 
 import java.io.BufferedWriter;
 import java.io.File;

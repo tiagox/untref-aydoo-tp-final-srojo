@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.exceptions;
 
 public class RegistroInvalidoException extends Exception {
 

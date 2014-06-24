@@ -1,6 +1,12 @@
-package untref.aydoo;
+package untref.aydoo.runtime;
 
 import org.apache.log4j.Logger;
+
+import untref.aydoo.domain.Prestamo;
+import untref.aydoo.domain.StatsCalculator;
+import untref.aydoo.exceptions.RegistroHeaderException;
+import untref.aydoo.exceptions.RegistroInvalidoException;
+import untref.aydoo.files.CsvReader;
 
 public class Processor implements Runnable {
 

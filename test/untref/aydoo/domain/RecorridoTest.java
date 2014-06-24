@@ -1,4 +1,4 @@
-package untref.aydoo;
+package untref.aydoo.domain;
 
 import org.junit.Assert;
 import org.junit.Test;
