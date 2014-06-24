@@ -129,7 +129,15 @@
     </target>
 
     <target name="empaquetar" depends="compilar.paquete">
-        <jar destfile="${build}/dist/procesador_estadistico.jar" basedir="${build}/classes" />
+        <jar destfile="${build}/dist/procesador_estadistico.jar" basedir="${build}/classes">
+            <manifest>
+                <attribute name="Main-Class" value="untref.aydoo.Main"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${build}"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libs}/log4j-1.2.9.jar"/>
+        </jar>
+        <copy file="log4j.properties" tofile="${build}/dist/log4j.properties"/>
     </target>
 
     <target name="integracion-continua" depends="coverage-report" description="Ejecuta todas las tareas de integracion y genera los correspondientes reportes" />
