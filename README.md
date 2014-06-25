@@ -11,7 +11,13 @@ El analisis de los archivos, provistos en formato ZIP, genera un archivo en form
 * Recorridos realizados más veces.
 * Tiempo promedio de uso de las bicicletas.
 
+### Enunciado del ejercicio.
+
 Para mas detalles sobre el enunciado del ejercicio, acceda [aquí](https://github.com/tiagox/untref-aydoo-tp-final-srojo/blob/master/docs/enunciado.md).
+
+### Diagramas para entender la implementación.
+
+[Aquí](https://github.com/tiagox/untref-aydoo-tp-final-srojo/blob/master/docs/diagramas.md) puede verse el diagrama de dominio y los diagramas de secuencias de los procesos más importantes.
 
 ## Compilación de la aplicación.
 
@@ -50,7 +56,4 @@ $ java -jar build/dist/procesador_estadistico.jar -d directorio/a/procesar
 ```
 
 Con el argumento `-d` se indica el nuevo modo de funcionamiento. Es importante respetar el orden de los argumentos.
-
-
-
 
