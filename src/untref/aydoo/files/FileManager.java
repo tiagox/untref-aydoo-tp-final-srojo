@@ -70,11 +70,9 @@ public class FileManager {
 
 	public File createSubDir(String dirName, String subDirName) {
 		File subDir = new File(dirName + File.separator + subDirName);
-
 		if (!subDir.exists()) {
 			subDir.mkdir();
 		}
-
 		return subDir;
 	}
 
